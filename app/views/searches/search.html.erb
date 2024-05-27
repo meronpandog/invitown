@@ -1,0 +1,18 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "customer" %>
+    <tbody>
+
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがUserではない時(= 検索対象モデルがpostの時) -->
+    <tbody>
+     <% @posts.each do |post| %>
+       <%= render 'public/posts/look', post: post %>
+       <%= link_to 'show', public_post_path(post.id) %>
+     <% end %>
+    </tbody>
+  <% end %>
+</table>

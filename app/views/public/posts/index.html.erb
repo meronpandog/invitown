@@ -1,0 +1,20 @@
+<%#= render 'searches/form' %>
+<h1><b>町　紹　介</b></h1>
+
+<div class="container-fluid">
+<div class="row justify-content-center">
+
+
+<% @posts.each do |post| %>
+  <%= render 'look', post: post %>
+  <!--<p>コメント件数：<%#= post.post_comments.count %></p>-->
+  <div style="display: flex; justify-content: flex-end; margin-top: auto;">
+  <%= link_to '詳細を見る', public_post_path(post.id) %>
+  </div>
+<% end %>
+
+</div>
+
+
+<%= link_to '新規投稿', new_public_post_path %>
+</div>
