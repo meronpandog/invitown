@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  namespace :admin do
+    resources :posts, only: [:new, :show, :create, :index, :edit, :update, :destroy]
+  end
+
   root to: 'homes#top'
   get "home/about"=>"homes#about"
   get "search" => "searches#search"

@@ -1,0 +1,20 @@
+
+<table style="text-align: center;">
+  <tr>
+   <th><h2><%= post.title %></h2></th>
+  </tr>
+  <tr>
+   <td>
+     <% if post.image.attached? %>
+       <%= image_tag post.image, size: "800x500" %>
+     <% else %>
+       <%= image_tag 'no_image', size: "800x500" %>
+     <% end %>
+   </td>
+  </tr>
+  <tr>
+   <td><h5><%= post.body %></h5></td>
+  </tr>
+</table>
+
+
