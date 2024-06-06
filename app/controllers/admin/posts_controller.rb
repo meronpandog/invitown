@@ -1,5 +1,5 @@
 class Admin::PostsController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_admin!
 
   def index
     @posts = Post.all
@@ -14,16 +14,14 @@ class Admin::PostsController < ApplicationController
     # @posts = Post.all
     # @post = Post.new
     @post = Post.find(params[:id])
-    @post_comment = PostComment.new
-    @customer = @post.customer
+    # @post_comment = PostComment.new
   end
 
   def create
     @post = Post.new(post_params)
-    @post.customer = current_customer
     if @post.save
         flash[:notice] = 'You have created item successfully'
-        redirect_to public_posts_path
+        redirect_to admin_posts_path
         # redirect_to public_post_path(post.id)# @postのidを指定して詳細ページへリダイレクト
     else
       # @posts = Post.all
@@ -44,7 +42,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-       redirect_to public_post_path(@post)
+       redirect_to admin_post_path
     else
       render :edit
     end
