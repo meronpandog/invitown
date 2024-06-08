@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <div class="container-fluid">
 <div class="row justify-content-center">
 
@@ -7,8 +11,4 @@
 </div>
 <p>コメント件数：<%= @post.post_comments.count %></p>
 <%= render "public/post_comments/comment", post: @post, customer: @customer %>
-<div>
-  <%= flash[:notice] %>
-</div>
 <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
-<%#= render 'review', post: Post.new %>

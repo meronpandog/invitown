@@ -1,3 +1,4 @@
+
 <div>
   <%= form_with model: [post, post_comment], url: public_post_post_comments_path(post) do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
