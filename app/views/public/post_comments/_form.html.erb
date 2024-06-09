@@ -3,6 +3,28 @@
   <%= form_with model: [post, post_comment], url: public_post_post_comments_path(post) do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%#= render 'public/posts/review', post: post %>
+
+        <div class="form-group" id="star">
+      <%= f.label :star %>
+      <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+      <div id="post_raty"></div>
+    </div>
+    <script>
+      $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#post_raty');
+        if (elem == null) return;
+
+        elem.innerHTML = ""
+        let opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'post[star]',
+        };
+        raty(elem, opt);
+      });
+    </script>
+
     <%= f.submit "送信する" %>
   <% end %>
 </div>

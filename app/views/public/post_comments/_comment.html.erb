@@ -10,5 +10,24 @@
   <% if post_comment.customer == current_customer %>
     <%= link_to "削除", public_post_post_comment_path(post, post_comment), method: :delete %>
   <% end %>
-  <%#= render "public/posts/rate", post: post %>
+  <%#= render "public/post_comments/rate", post: post %>
+
+  <div id="rate_<%= post.id %>"></div>
+<script>
+$(document).on('turbolinks:load', function() {
+  let elem = document.querySelector('#rate_<%= post.id %>');
+  if (elem == null) return;
+
+  elem.innerHTML = "";
+  let opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: "<%= post.star %>",
+    readOnly: true,
+  };
+  raty(elem, opt);
+});
+</script>
+
 <% end %>
