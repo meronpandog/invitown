@@ -4,22 +4,23 @@
     <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
     <%#= render 'public/posts/review', post: post %>
 
-        <div class="form-group" id="star">
+    <div class="form-group" id="star">
       <%= f.label :star %>
       <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-      <div id="post_raty"></div>
+    <div id="post_raty"></div>
     </div>
+
     <script>
       $(document).on('turbolinks:load', function() {
         let elem = document.querySelector('#post_raty');
         if (elem == null) return;
 
-        elem.innerHTML = ""
+        elem.innerHTML = "";
         let opt = {
           starOn: "<%= asset_path('star-on.png') %>",
           starOff: "<%= asset_path('star-off.png') %>",
           starHalf: "<%= asset_path('star-half.png') %>",
-          scoreName: 'post[star]',
+          scoreName: 'post_comment[star]',
         };
         raty(elem, opt);
       });
