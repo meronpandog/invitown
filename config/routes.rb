@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :posts, only: [:show, :index,] do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
   end
 
@@ -31,9 +32,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     resources :posts, only: [:new, :show, :create, :index, :edit, :update, :destroy]
+    resources :maps, only: [:new, :index, :show, :create]
   end
 
   get "home/about"=>"homes#about"
   get "search" => "searches#search"
+  get 'tagsearches/search', to: 'tagsearches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

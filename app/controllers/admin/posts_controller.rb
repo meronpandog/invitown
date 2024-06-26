@@ -3,6 +3,8 @@ class Admin::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @posts = Post.order(created_at: :desc)
+    @maps = Map.all
     # @posts = @customer.posts
   end
 
@@ -11,6 +13,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
+    # @posts = Post.order(created_at: :desc)
     # @posts = Post.all
     # @post = Post.new
     @post = Post.find(params[:id])
@@ -51,7 +54,7 @@ class Admin::PostsController < ApplicationController
 private
 
   def post_params
-    params.require(:post).permit(:image, :title, :body)#, :star, :comment)
+    params.require(:post).permit(:image, :title, :body, :place, :lat, :lng, :category)#, :star, :comment)
   end
 
 end
